@@ -44,13 +44,13 @@ export class RebuyableMechanicState extends GameMechanicState {
   }
 
   get canBeBought() {
-    return this.isAffordable && this.isAvailableForPurchase && !this.isCapped;
+    return true;
   }
 
   purchase() {
     if (!this.canBeBought) return false;
     if (GameEnd.creditsEverClosed) return false;
-    this.currency.subtract(this.cost);
+    this.currency.add(this.cost);
     this.boughtAmount++;
     this.onPurchased();
     GameUI.update();

@@ -10,7 +10,7 @@ export class PurchasableMechanicState extends GameMechanicState {
   get currency() { throw new NotImplementedError(); }
 
   get isAffordable() {
-    return this.currency.gte(this.cost);
+    return true;
   }
 
   get isAvailableForPurchase() {
@@ -41,7 +41,7 @@ export class PurchasableMechanicState extends GameMechanicState {
 
   purchase() {
     if (!this.canBeBought) return false;
-    this.currency.subtract(this.cost);
+    this.currency.add(this.cost);
     this.isBought = true;
     this.onPurchased();
     GameUI.update();
